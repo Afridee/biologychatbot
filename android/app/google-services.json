@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "775630117709",
+    "project_id": "biologychatbot",
+    "storage_bucket": "biologychatbot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775630117709:android:16a6a5ba16a08945203504",
+        "android_client_info": {
+          "package_name": "com.example.biologychatbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775630117709-ksisfqrlcr9400nh5d3occuc2usnapgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.biologychatbot",
+            "certificate_hash": "7df34231457db5125c3398e3b2ae2440ae1ba407"
+          }
+        },
+        {
+          "client_id": "775630117709-gc2ha022ir6lrdj5ortc2d5k2fmj748b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1P44f1x0FcjcFbU7g_-aVpwMxm7woYbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775630117709-gc2ha022ir6lrdj5ortc2d5k2fmj748b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "775630117709-085skuh3ujuskenq2cp0hi63mjlqj77p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.biologychatbot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
