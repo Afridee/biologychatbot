@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'chatPage.dart';
+import 'onboardingScreens.dart';
 
 class LoggedInOrNot extends StatefulWidget {
   const LoggedInOrNot({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _LoggedInOrNotState extends State<LoggedInOrNot> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AuthService>(builder: (as){
-     return as.isLoading ?  Scaffold(
+     return as.isLoading ?   Scaffold(
        body: Center(
          child: Padding(
            padding: const EdgeInsets.all(120.0),
@@ -30,7 +31,7 @@ class _LoggedInOrNotState extends State<LoggedInOrNot> {
            ),
          ),
        ),
-     )   :  as.isSignedIn() ?  ChatScreen() : LoginPage();
+     )   :  as.isSignedIn() ?  ChatScreen() : OnboardingScreen();
     });
   }
 }

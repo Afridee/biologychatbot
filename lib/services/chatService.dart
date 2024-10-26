@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,10 @@ import '../models/message.dart';
 class ChatService extends GetxController {
 
   client.Dio dio = client.Dio();
+  String baseUrlValue = "";
   bool isLoading = false;
   List<Message> messages = [];
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
    addToMessages({required String message, required bool isMe}){
      messages.add(Message(text: message, isMe: isMe));
@@ -24,10 +27,15 @@ class ChatService extends GetxController {
      isLoading = true;
      update();
 
+     /// Get the base url:
+     DocumentSnapshot<Map<String, dynamic>> documentSnapshot = await firestore.collection('baseurl').doc('baseurl').get();
+     baseUrlValue = documentSnapshot.data()?['baseurl'] ?? 'No data found';
+
      dio.options.followRedirects = true;
+
      try {
        client.Response res = await dio.post(
-         "http://localhost:3000/generate",
+         "${baseUrlValue.trim()}/generate",
          data: {
            "prompt": "Please answer this biology question: $question"
          },
