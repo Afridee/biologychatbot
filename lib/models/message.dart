@@ -1,8 +1,10 @@
 class Message {
+  final String? img;
   final String text;
   final bool isMe;
 
   Message({
+    required this.img,
     required this.text,
     required this.isMe,
   });
@@ -12,6 +14,7 @@ class Message {
     return Message(
       text: json['text'],
       isMe: json['isMe'],
+      img: json['img'],
     );
   }
 
@@ -20,6 +23,7 @@ class Message {
     return {
       'text': text,
       'isMe': isMe,
+      'img': img
     };
   }
 }

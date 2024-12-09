@@ -9,9 +9,9 @@ import 'constants/constants.dart';
 class OnboardingScreen extends StatelessWidget {
   final List<Introduction> list = [
     Introduction(
-      title: 'Explore Biology Concepts',
-      subTitle: 'Dive deep into various biology topics. Learn about cell functions, ecosystems, and genetics with detailed explanations tailored for every curriculum.',
-      imageUrl: 'assets/images/Biologist-bro.png',
+      title: 'All Subjects Covered',
+      subTitle: 'From science to math, history to literature – all core subjects are available in one app.',
+      imageUrl: 'assets/images/Research paper-bro.png',
       titleTextStyle: TextStyle(color: bright_green,fontSize: 25),
       subTitleTextStyle: const TextStyle(color: Colors.white, fontSize: 15),
     ),

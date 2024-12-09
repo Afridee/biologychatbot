@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                     child: Image.asset("assets/images/Chatbot-bro.png"),
                   ),
                   const Text(
-                    "Hello, It's BioBot",
+                    "Hello, It's EduReach!",
                     style: TextStyle(
                         fontSize: 25,
                         color: Color(0xFF4EF28F),
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   const Padding(
                     padding: EdgeInsets.all(30.0),
-                    child: Text("Your personalized biology assistant for quick answers, interactive quizzes, and easy-to-understand concepts.",
+                    child: Text("Your personalized assistant for quick answers, interactive quizzes, and easy-to-understand concepts.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
