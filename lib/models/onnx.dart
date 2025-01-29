@@ -26,10 +26,11 @@ runStuff() async {
 
   final runOptions = OrtRunOptions();
   bool shouldStop = false;
-  int maxOutputLength = 32;
+  int maxNewTokens = 32;
+  int generatedTokens = 0;
   int eosTokenId = 1; // You need to set this based on your model's vocabulary
 
-  while (!shouldStop && decoderInputIds[0].length < maxOutputLength) {
+  while (!shouldStop && generatedTokens < maxNewTokens) {
     final outputs = await session.runAsync(runOptions, {
       'input_ids': inputIdsTensor,
       'attention_mask': attentionMaskTensor,
@@ -39,17 +40,16 @@ runStuff() async {
     List<dynamic> logitsBatch = outputs![0]!.value as List<dynamic>;
     List<dynamic> logitsSequence = logitsBatch[0] as List<dynamic>;
     List<double> logitsLastToken = logitsSequence.last.cast<double>();
-    int nextTokenId = argmax(logitsLastToken);// assuming the output tensor structure and index outputs[0]
+    int nextTokenId = argmax(logitsLastToken);
 
     if (nextTokenId == eosTokenId) {
       shouldStop = true;
     } else {
-      decoderInputIds[0].add(nextTokenId); // Append the new token ID to your list
+      decoderInputIds[0].add(nextTokenId);
+      generatedTokens++;  // Increment the generated token counter
 
-      // Release the old tensor to avoid memory leaks
+      // Update the decoder input tensor
       decoderInputIdsTensor.release();
-
-      // Create a new tensor with the updated decoder input IDs
       decoderInputIdsTensor = OrtValueTensor.createTensorWithDataList(decoderInputIds, [1, decoderInputIds[0].length]);
     }
   }
