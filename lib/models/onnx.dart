@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:onnxruntime/onnxruntime.dart';
-import 'dart:developer' as dev;
 
 Map<String, dynamic> data = {"input_ids":[[863,1525,48,15651,822,10,363,19,46,2586,2358,58,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"attention_mask":[[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"decoder_input_ids":[[0]]};
 
@@ -37,7 +36,10 @@ runStuff() async {
       'decoder_input_ids': decoderInputIdsTensor
     });
 
-    int nextTokenId = 2; // assuming the output tensor structure and index outputs[0]
+    List<dynamic> logitsBatch = outputs![0]!.value as List<dynamic>;
+    List<dynamic> logitsSequence = logitsBatch[0] as List<dynamic>;
+    List<double> logitsLastToken = logitsSequence.last.cast<double>();
+    int nextTokenId = argmax(logitsLastToken);// assuming the output tensor structure and index outputs[0]
 
     if (nextTokenId == eosTokenId) {
       shouldStop = true;
@@ -60,6 +62,8 @@ runStuff() async {
   // Cleanup the session and environment
   session.release();
   OrtEnv.instance.release();
+
+  print(decoderInputIds);
 
   return decoderInputIds;  // This would typically be your function's output
 }
