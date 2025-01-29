@@ -70,6 +70,7 @@ dependencies:
   in_app_update: ^4.2.2
   firebase_auth:
   cloud_firestore:
+  onnxruntime: ^1.4.1
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +99,7 @@ flutter:
     - assets/images/
     - assets/animations/
     - assets/svg/
+    - models/flan-t5.onnx
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

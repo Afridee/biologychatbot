@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:biologychatbot/constants/constants.dart';
+import 'package:biologychatbot/models/onnx.dart';
 import 'package:biologychatbot/services/chatService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -112,17 +113,18 @@ class _ChatScreenState extends State<ChatScreen> {
                           IconButton(
                             icon: Icon(Icons.send, color: Color(0xFF4EF28F)), // Bright Green
                             onPressed: () async {
-                              chatService.addToMessages(message: typed.text, isMe: true, img: uploadedDiagram!=null?  uploadedDiagram!.path : null);
-
-                              if(uploadedDiagram==null){
-                                chatService.askFlant5(question: typed.text);
-                              }else{
-                                chatService.createCaptionWithBlip(diagram: uploadedDiagram!, question: typed.text);
-                                uploadedDiagram = null;
-                                setState(() {});
-                              }
-
-                              typed.clear();
+                              runStuff();
+                              // chatService.addToMessages(message: typed.text, isMe: true, img: uploadedDiagram!=null?  uploadedDiagram!.path : null);
+                              //
+                              // if(uploadedDiagram==null){
+                              //   chatService.askFlant5(question: typed.text);
+                              // }else{
+                              //   chatService.createCaptionWithBlip(diagram: uploadedDiagram!, question: typed.text);
+                              //   uploadedDiagram = null;
+                              //   setState(() {});
+                              // }
+                              //
+                              // typed.clear();
                             },
                           ),
                         ],
