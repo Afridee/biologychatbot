@@ -113,7 +113,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           IconButton(
                             icon: Icon(Icons.send, color: Color(0xFF4EF28F)), // Bright Green
                             onPressed: () async {
-                              runStuff();
+                              chatService.encode(question: typed.text);
                               // chatService.addToMessages(message: typed.text, isMe: true, img: uploadedDiagram!=null?  uploadedDiagram!.path : null);
                               //
                               // if(uploadedDiagram==null){

@@ -89,4 +89,34 @@ class ChatService extends GetxController {
      update();
    }
 
+   encode({required String question}) async{
+    isLoading = true;
+    update();
+
+    dio.options.followRedirects = true;
+
+    try {
+      client.Response res = await dio.post(
+        "http://192.168.0.105:8000/encode",
+        data: {
+          "question": question
+        },
+      );
+      //addToMessages(message: res.data["generated_text"].toString(), isMe: false, img: null);
+      print(res.data);
+    } catch (e,stack) {
+      print(e);
+      print(stack);
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(stack);
+      }
+    }
+
+    isLoading = false;
+    update();
+  }
+
 }
